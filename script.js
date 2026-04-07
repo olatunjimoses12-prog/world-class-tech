@@ -1,34 +1,57 @@
-document
-  .getElementById("form")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
+const form = document.getElementById("form");
+const modal = document.getElementById("successModal");
+const closeModal = document.getElementById("closeModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
 
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      course: e.target.course.value
-    };
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("/api/apply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const course = document.getElementById("course").value;
+  const cohort = document.getElementById("cohort").value;
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
 
-      const data = await response.json();
+  const formData = {
+    name: `${firstName} ${lastName}`,
+    email,
+    phone,
+    course: `${course} - ${cohort}`
+  };
 
-      if (response.ok) {
-        alert("Application Submitted Successfully!");
-        e.target.reset();
-      } else {
-        alert("Submission failed: " + data.message);
-      }
+  try {
+    const response = await fetch("/api/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
 
-    } catch (error) {
-      alert("Error submitting form");
+    const data = await response.json();
+
+    if (response.ok) {
+      form.reset();
+      modal.classList.remove("hidden");
+    } else {
+      alert("Submission failed: " + data.message);
     }
-  });
+  } catch (error) {
+    alert("Error submitting form");
+  }
+});
+
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+closeModalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.add("hidden");
+  }
+});

@@ -1,48 +1,104 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>World Class Tech Academy Application</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Class Tech Academy</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<h2>World Class Tech Academy</h2>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
 
-<h3>Apply for a Course</h3>
+    <div class="topbar">
+      <img src="c:\Users\WayneBliss\Downloads\WC logo with name (1).PNG" alt="WCTA Logo" class="logo" />
+    </div>
 
-<form id="form">
+    <div class="hero-content">
+      <h1>World Class Tech Academy</h1>
+      <p>Learn in-demand digital skills and join a thriving tech community.</p>
+    </div>
+  </section>
 
-<input type="text" name="name" placeholder="Full Name" required>
+  <!-- Registration Section -->
+  <section class="form-section">
+    <div class="form-container">
+      <h2>One last step, let's get to know you</h2>
+      <p class="subtitle">Fill in your details to get started.</p>
 
-<br><br>
+      <form id="form">
 
-<input type="email" name="email" placeholder="Email Address" required>
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="First Name" required />
 
-<br><br>
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="Last Name" required />
 
-<input type="text" name="phone" placeholder="Phone Number" required>
+        <label>Course</label>
+        <select id="course" required>
+          <option value="">Choose a course</option>
+          <option>Frontend Development</option>
+          <option>Backend Development</option>
+          <option>UI/UX Design</option>
+          <option>Data Analysis</option>
+        </select>
 
-<br><br>
+        <label>Cohort</label>
+        <select id="cohort" required>
+          <option value="">Choose a cohort</option>
+          <option>Weekend Cohort</option>
+          <option>Weekday Cohort</option>
+          <option>Evening Cohort</option>
+        </select>
 
-<select name="course">
+        <label>Phone Number</label>
+        <input type="text" id="phone" placeholder="Phone Number" required />
 
-<option>Frontend Development</option>
-<option>Backend Development</option>
-<option>UI/UX Design</option>
-<option>Data Analysis</option>
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Email Address" required />
 
-</select>
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+  </section>
 
-<br><br>
+  <!-- WhatsApp Floating Button -->
+  <a
+    href="https://wa.me/2349067441498"
+    class="whatsapp-float"
+    target="_blank"
+    aria-label="Chat on WhatsApp"
+  >
+    💬
+  </a>
 
-<button type="submit">
-Apply Now
-</button>
+  <!-- Success Modal -->
+  <div class="modal hidden" id="successModal">
+    <div class="modal-card">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <div class="emoji">🎉</div>
+      <h3>Course Registered Successfully!</h3>
+      <p>
+        Thank you for registering with World Class Tech Academy.
+        Your application has been received successfully.
+      </p>
 
-</form>
+      <a
+        href="https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF?mode=gi_t"
+        target="_blank"
+        class="join-group-btn"
+      >
+        Join WhatsApp Group
+      </a>
 
-<script src="script.js"></script>
+      <button class="modal-secondary-btn" id="closeModalBtn">
+        Close this window
+      </button>
+    </div>
+  </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
