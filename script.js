@@ -30,17 +30,16 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
+    console.log("API response:", data);
 
     if (response.ok) {
       form.reset();
       modal.classList.remove("hidden");
     } else {
-      if (data.message.includes("already applied")) {
-  alert("You have already applied with this email or phone number.");
-} else {
-  alert("Submission failed: " + data.message);
+      alert(data.message || "Submission failed");
     }
   } catch (error) {
+    console.error("Frontend error:", error);
     alert("Error submitting form");
   }
 });

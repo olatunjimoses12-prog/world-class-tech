@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   });
 
   try {
-    // 1. Save to Google Sheets first
+    // 1. Send data to Google Sheets FIRST
     const sheetResponse = await fetch(process.env.GOOGLE_SCRIPT_URL, {
       method: "POST",
       headers: {
@@ -30,9 +30,10 @@ export default async function handler(req, res) {
       })
     });
 
-    const sheetData = await sheetResponse.json();
+    const rawText = await sheetResponse.text();
+    const sheetData = JSON.parse(rawText);
 
-    // 2. Stop if duplicate
+    // 2. Stop if duplicate or failed
     if (!sheetData.success) {
       return res.status(400).json({
         message: sheetData.message || "Duplicate application detected"
@@ -53,7 +54,7 @@ export default async function handler(req, res) {
       `
     });
 
-    // 4. Send admin notification to you
+    // 4. Send admin email to you
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
