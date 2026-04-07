@@ -14,7 +14,7 @@ body {
 .hero {
   position: relative;
   height: 320px;
-  background: url("c:\Users\WayneBliss\Downloads\B73033B3-2355-41CB-B7A3-4E7F2E9D8666.PNG") center/cover no-repeat;
+  background: url("hero.PNG") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
