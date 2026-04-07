@@ -35,7 +35,10 @@ form.addEventListener("submit", async (e) => {
       form.reset();
       modal.classList.remove("hidden");
     } else {
-      alert("Submission failed: " + data.message);
+      if (data.message.includes("already applied")) {
+  alert("You have already applied with this email or phone number.");
+} else {
+  alert("Submission failed: " + data.message);
     }
   } catch (error) {
     alert("Error submitting form");

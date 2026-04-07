@@ -16,7 +16,30 @@ export default async function handler(req, res) {
   });
 
   try {
-    // 1. Send confirmation email to student
+    // 1. Save to Google Sheets first
+    const sheetResponse = await fetch(process.env.GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        course
+      })
+    });
+
+    const sheetData = await sheetResponse.json();
+
+    // 2. Stop if duplicate
+    if (!sheetData.success) {
+      return res.status(400).json({
+        message: sheetData.message || "Duplicate application detected"
+      });
+    }
+
+    // 3. Send confirmation email to student
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
@@ -30,7 +53,7 @@ export default async function handler(req, res) {
       `
     });
 
-    // 2. Send admin notification to you
+    // 4. Send admin notification to you
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -42,20 +65,6 @@ export default async function handler(req, res) {
         <p><b>Phone:</b> ${phone}</p>
         <p><b>Course:</b> ${course}</p>
       `
-    });
-
-    // 3. Save to Google Sheets
-    await fetch(process.env.GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        course
-      })
     });
 
     return res.status(200).json({
