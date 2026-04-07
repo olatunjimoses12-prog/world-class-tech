@@ -113,8 +113,8 @@ select {
 
 input:focus,
 select:focus {
-  border-color: #0b57d0;
-  box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
+  border-color: #f54a0a;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
 }
 
 .submit-btn {
@@ -122,7 +122,7 @@ select:focus {
   padding: 16px;
   border: none;
   border-radius: 14px;
-  background: #0b57d0;
+  background: #f54a0a;
   color: white;
   font-size: 18px;
   font-weight: 600;
@@ -230,7 +230,7 @@ select:focus {
 }
 
 .modal-secondary-btn {
-  background: #0b57d0;
+  background: #f54a0a;
   color: white;
 }
 
