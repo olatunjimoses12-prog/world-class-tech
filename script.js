@@ -1,36 +1,34 @@
 document
-.getElementById("form")
-.addEventListener("submit", async (e) => {
+  .getElementById("form")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-e.preventDefault();
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      course: e.target.course.value
+    };
 
-const formData = {
-name: e.target.name.value,
-email: e.target.email.value,
-phone: e.target.phone.value,
-course: e.target.course.value
-};
+    try {
+      const response = await fetch("/api/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-try {
+      const data = await response.json();
 
-await fetch("/api/apply", {
+      if (response.ok) {
+        alert("Application Submitted Successfully!");
+        e.target.reset();
+      } else {
+        alert("Submission failed: " + data.message);
+      }
 
-method: "POST",
-
-headers: {
-"Content-Type": "application/json"
-},
-
-body: JSON.stringify(formData)
-
-});
-
-alert("Application Submitted Successfully!");
-
-} catch (error) {
-
-alert("Error submitting form");
-
-}
-
-});
+    } catch (error) {
+      alert("Error submitting form");
+    }
+  });
