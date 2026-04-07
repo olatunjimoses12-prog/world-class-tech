@@ -16,6 +16,7 @@ export default async function handler(req, res) {
   });
 
   try {
+    // 1. Send confirmation email to student
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
@@ -29,13 +30,41 @@ export default async function handler(req, res) {
       `
     });
 
+    // 2. Send admin notification to you
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "New Application Received",
+      html: `
+        <h2>New Student Application</h2>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Phone:</b> ${phone}</p>
+        <p><b>Course:</b> ${course}</p>
+      `
+    });
+
+    // 3. Save to Google Sheets
+    await fetch(process.env.GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        course
+      })
+    });
+
     return res.status(200).json({
-      message: "Success"
+      message: "Application submitted successfully"
     });
 
   } catch (error) {
     return res.status(500).json({
-      message: "Email failed",
+      message: "Submission failed",
       error: error.message
     });
   }
