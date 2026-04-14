@@ -271,3 +271,9 @@ select:focus {
   background: #1ebe5d;
   transform: translateY(-1px);
 }
+.note-text {
+  font-size: 14px;
+  color: #666;
+  margin: 12px 0 18px;
+  line-height: 1.6;
+}
