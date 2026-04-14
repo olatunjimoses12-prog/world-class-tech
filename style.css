@@ -192,32 +192,32 @@ select:focus {
 }
 
 .emoji {
-  font-size: 62px;
-  margin-bottom: 12px;
+  font-size: 48px;
+  margin-bottom: 10px;
 }
 
 .modal-card h3 {
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1.2;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   font-weight: 700;
 }
 
 .modal-card p {
-  font-size: 18px;
+  font-size: 15px;
   color: #333;
-  line-height: 1.8;
-  margin-bottom: 24px;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .join-group-btn,
 .modal-secondary-btn {
   display: block;
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   border-radius: 14px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 12px;
   border: none;
