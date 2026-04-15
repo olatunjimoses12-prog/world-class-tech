@@ -13,12 +13,12 @@ body {
 /* HERO */
 .hero {
   position: relative;
-  height: 320px;
-  background: url("hero.PNG") center/cover no-repeat;
+  height: 300px;
+  background: url("hero.png") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px 20px;
+  padding: 20px;
   color: white;
 }
 
@@ -35,20 +35,81 @@ body {
 }
 
 .logo {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: white;
   padding: 4px;
 }
 
+.hero-content h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.hero-content p {
+  font-size: 14px;
+}
+
 /* FORM */
+.form-section {
+  padding: 20px;
+}
+
 .form-container {
-  max-width: 500px;
+  max-width: 420px;
   margin: -40px auto 0;
   background: white;
-  padding: 25px;
-  border-radius: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input,
+select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 14px;
+  background: #f54a0a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  background: #25D366;
+  color: white;
+  font-size: 26px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 /* MODAL */
@@ -70,10 +131,20 @@ body {
 .modal-card {
   background: white;
   width: 90%;
-  max-width: 380px;
+  max-width: 340px;
   border-radius: 20px;
   padding: 20px;
   text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* CHECKMARK */
@@ -84,8 +155,8 @@ body {
 }
 
 .checkmark-circle {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   background: #25D366;
   border-radius: 50%;
   position: relative;
@@ -94,16 +165,17 @@ body {
 
 .checkmark {
   position: absolute;
-  left: 22px;
-  top: 18px;
-  width: 20px;
-  height: 35px;
+  left: 20px;
+  top: 16px;
+  width: 18px;
+  height: 32px;
   border-right: 4px solid white;
   border-bottom: 4px solid white;
   transform: rotate(45deg) scale(0);
   animation: drawCheck 0.4s 0.3s ease forwards;
 }
 
+/* ANIMATIONS */
 @keyframes scaleIn {
   from { transform: scale(0); }
   to { transform: scale(1); }
@@ -127,6 +199,7 @@ body {
   border-radius: 10px;
   text-decoration: none;
   margin-top: 15px;
+  font-weight: 600;
 }
 
 .modal-secondary-btn {
@@ -137,11 +210,13 @@ body {
   width: 100%;
   border-radius: 10px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 /* TEXT */
 .note-text {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
   margin-top: 10px;
+  line-height: 1.5;
 }
