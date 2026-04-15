@@ -80,7 +80,12 @@
   <div class="modal-card">
     <button class="close-btn" id="closeModal">&times;</button>
 
-    <div class="emoji">🎉</div>
+    <!-- ✅ ANIMATED CHECKMARK -->
+    <div class="checkmark-container">
+      <div class="checkmark-circle">
+        <div class="checkmark"></div>
+      </div>
+    </div>
 
     <h3>Application Successful</h3>
 
@@ -101,10 +106,14 @@
       Join WhatsApp Group
     </a>
 
-    <!-- ✅ NEW PARAGRAPH (ADDED HERE) -->
     <p class="note-text">
       After joining the group, you can close this window. All important updates,
       class schedules, and announcements will be shared in the WhatsApp group.
+    </p>
+
+    <!-- OPTIONAL redirect text -->
+    <p id="redirectText" style="font-size: 13px; color: #888;">
+      Redirecting you to WhatsApp in 3 seconds...
     </p>
 
     <button class="modal-secondary-btn" id="closeModalBtn">

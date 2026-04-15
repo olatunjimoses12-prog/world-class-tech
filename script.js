@@ -3,6 +3,8 @@ const modal = document.getElementById("successModal");
 const closeModal = document.getElementById("closeModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 
+let redirected = false;
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -35,23 +37,49 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
       form.reset();
       modal.classList.remove("hidden");
+
+      // ✅ Countdown + Redirect
+      let timeLeft = 3;
+      const redirectText = document.getElementById("redirectText");
+
+      const countdown = setInterval(() => {
+        timeLeft--;
+
+        if (redirectText) {
+          redirectText.textContent = `Redirecting you to WhatsApp in ${timeLeft} seconds...`;
+        }
+
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+
+          if (!redirected) {
+            redirected = true;
+            window.open("https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF", "_blank");
+          }
+        }
+      }, 1000);
+
     } else {
       alert(data.message || "Submission failed");
     }
+
   } catch (error) {
     console.error("Frontend error:", error);
     alert("Error submitting form");
   }
 });
 
+// ❌ Close modal (X button)
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
+// ❌ Close modal (button)
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
+// ❌ Close when clicking outside
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.add("hidden");
