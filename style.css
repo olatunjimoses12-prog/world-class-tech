@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -10,15 +11,16 @@ body {
   color: #111;
 }
 
-/* HERO */
+
+/* ================= HERO ================= */
 .hero {
   position: relative;
-  height: 300px;
-  background: url("hero.png") center/cover no-repeat;
+  height: 320px;
+  background: url("hero.PNG") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 24px 20px;
   color: white;
 }
 
@@ -35,84 +37,126 @@ body {
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
+  object-fit: cover;
   background: white;
   padding: 4px;
 }
 
+.hero-content {
+  margin-bottom: 20px;
+}
+
 .hero-content h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .hero-content p {
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 320px;
 }
 
-/* FORM */
+
+/* ================= FORM ================= */
 .form-section {
-  padding: 20px;
+  padding: 30px 18px 40px;
 }
 
 .form-container {
-  max-width: 420px;
-  margin: -40px auto 0;
+  max-width: 500px;
+  margin: auto;
   background: white;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 28px 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  margin-top: -40px;
+  position: relative;
+  z-index: 5;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 28px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
 }
 
 input,
 select {
-  padding: 12px;
-  border-radius: 10px;
+  width: 100%;
+  padding: 16px;
   border: 1px solid #ddd;
-  font-size: 14px;
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #f54a0a;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
 }
 
 .submit-btn {
-  margin-top: 10px;
-  padding: 14px;
+  margin-top: 18px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
   background: #f54a0a;
   color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 10px 20px rgba(11, 87, 208, 0.25);
 }
 
-/* WHATSAPP FLOAT */
+.submit-btn:hover {
+  opacity: 0.95;
+}
+
+
+/* ================= WHATSAPP FLOAT ================= */
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
-  right: 15px;
-  width: 55px;
-  height: 55px;
+  bottom: 24px;
+  right: 18px;
+  width: 60px;
+  height: 60px;
   background: #25D366;
   color: white;
-  font-size: 26px;
+  font-size: 28px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 999;
 }
 
-/* MODAL */
+
+/* ================= MODAL ================= */
 .modal {
   position: fixed;
   inset: 0;
@@ -120,8 +164,8 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   z-index: 1000;
-  animation: fadeIn 0.3s ease;
 }
 
 .hidden {
@@ -130,24 +174,39 @@ select {
 
 .modal-card {
   background: white;
-  width: 90%;
-  max-width: 340px;
-  border-radius: 20px;
-  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 28px 22px;
   text-align: center;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
+  top: 16px;
+  right: 18px;
   border: none;
   background: none;
+  font-size: 30px;
   cursor: pointer;
+  color: #666;
 }
 
-/* CHECKMARK */
+.modal-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.modal-card p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* ================= SUCCESS CHECKMARK ================= */
 .checkmark-container {
   display: flex;
   justify-content: center;
@@ -155,8 +214,8 @@ select {
 }
 
 .checkmark-circle {
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
   background: #25D366;
   border-radius: 50%;
   position: relative;
@@ -165,17 +224,16 @@ select {
 
 .checkmark {
   position: absolute;
-  left: 20px;
-  top: 16px;
-  width: 18px;
-  height: 32px;
+  left: 22px;
+  top: 18px;
+  width: 20px;
+  height: 35px;
   border-right: 4px solid white;
   border-bottom: 4px solid white;
   transform: rotate(45deg) scale(0);
   animation: drawCheck 0.4s 0.3s ease forwards;
 }
 
-/* ANIMATIONS */
 @keyframes scaleIn {
   from { transform: scale(0); }
   to { transform: scale(1); }
@@ -185,21 +243,21 @@ select {
   to { transform: rotate(45deg) scale(1); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
-/* BUTTONS */
+/* ================= BUTTONS ================= */
 .whatsapp-btn {
   display: block;
+  margin-top: 15px;
   background: #25D366;
   color: white;
   padding: 14px;
   border-radius: 10px;
   text-decoration: none;
-  margin-top: 15px;
   font-weight: 600;
+}
+
+.whatsapp-btn:hover {
+  background: #1ebe5d;
 }
 
 .modal-secondary-btn {
@@ -213,10 +271,32 @@ select {
   cursor: pointer;
 }
 
-/* TEXT */
+
+/* ================= TEXT ================= */
 .note-text {
-  font-size: 13px;
+  font-size: 14px;
   color: #666;
-  margin-top: 10px;
-  line-height: 1.5;
+  margin: 12px 0 18px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (min-width: 768px) {
+  .hero {
+    height: 420px;
+    padding: 40px 50px;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    max-width: 520px;
+  }
+
+  .form-container {
+    padding: 35px 30px 40px;
+  }
 }
