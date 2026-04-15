@@ -34,21 +34,36 @@ form.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       form.reset();
+
+      // 🔥 FORCE MODAL + ANIMATION RESTART
+      modal.classList.add("hidden");
+      void modal.offsetWidth; // reflow trick
       modal.classList.remove("hidden");
 
-// ✅ AUTO WHATSAPP REDIRECT
-setTimeout(() => {
-  window.open("https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF", "_blank");
-}, 3000);
+      // 🔥 FORCE CHECKMARK ANIMATION RESTART
+      const checkmark = document.querySelector(".checkmark");
+      if (checkmark) {
+        checkmark.style.animation = "none";
+        checkmark.offsetHeight; // trigger reflow
+        checkmark.style.animation = "";
+      }
+
+      // ✅ MOBILE SAFE REDIRECT
+      setTimeout(() => {
+        window.location.href = "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
+      }, 3000);
+
     } else {
       alert(data.message || "Submission failed");
     }
+
   } catch (error) {
     console.error("Frontend error:", error);
     alert("Error submitting form");
   }
 });
 
+// CLOSE MODAL
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
@@ -57,6 +72,7 @@ closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
+// CLICK OUTSIDE TO CLOSE
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.add("hidden");

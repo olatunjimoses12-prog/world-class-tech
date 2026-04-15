@@ -206,6 +206,7 @@ select:focus {
 }
 
 
+
 /* ================= SUCCESS CHECKMARK ================= */
 .checkmark-container {
   display: flex;
@@ -213,12 +214,17 @@ select:focus {
   margin-bottom: 15px;
 }
 
+/* REMOVE animation from default state */
 .checkmark-circle {
   width: 70px;
   height: 70px;
   background: #25D366;
   border-radius: 50%;
   position: relative;
+}
+
+/* ONLY animate when modal is visible */
+.modal:not(.hidden) .checkmark-circle {
   animation: scaleIn 0.4s ease forwards;
 }
 
@@ -231,9 +237,14 @@ select:focus {
   border-right: 4px solid white;
   border-bottom: 4px solid white;
   transform: rotate(45deg) scale(0);
+}
+
+/* animate check ONLY when modal is open */
+.modal:not(.hidden) .checkmark {
   animation: drawCheck 0.4s 0.3s ease forwards;
 }
 
+/* animations */
 @keyframes scaleIn {
   from { transform: scale(0); }
   to { transform: scale(1); }
