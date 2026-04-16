@@ -1,4 +1,4 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +11,8 @@ body {
   color: #111;
 }
 
-/* HERO */
+
+/* ================= HERO ================= */
 .hero {
   position: relative;
   height: 320px;
@@ -44,23 +45,49 @@ body {
   padding: 4px;
 }
 
+.hero-content {
+  margin-bottom: 20px;
+}
+
 .hero-content h1 {
   font-size: 28px;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
-/* FORM */
+.hero-content p {
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+
+/* ================= FORM ================= */
 .form-section {
   padding: 30px 18px 40px;
 }
 
 .form-container {
   max-width: 500px;
-  margin: -40px auto 0;
+  margin: auto;
   background: white;
-  padding: 28px 20px;
+  padding: 28px 20px 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  margin-top: -40px;
+  position: relative;
+  z-index: 5;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 28px;
 }
 
 form {
@@ -69,22 +96,67 @@ form {
   gap: 14px;
 }
 
-input, select {
-  padding: 14px;
-  border-radius: 10px;
+label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 16px;
   border: 1px solid #ddd;
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #f54a0a;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
 }
 
 .submit-btn {
-  padding: 14px;
+  margin-top: 18px;
+  padding: 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   background: #f54a0a;
   color: white;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 10px 20px rgba(11, 87, 208, 0.25);
 }
 
-/* MODAL */
+.submit-btn:hover {
+  opacity: 0.95;
+}
+
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 18px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: white;
+  font-size: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+
+/* ================= MODAL ================= */
 .modal {
   position: fixed;
   inset: 0;
@@ -92,6 +164,8 @@ input, select {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  z-index: 1000;
 }
 
 .hidden {
@@ -100,20 +174,46 @@ input, select {
 
 .modal-card {
   background: white;
-  width: 90%;
-  max-width: 380px;
-  border-radius: 20px;
-  padding: 22px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 28px 22px;
   text-align: center;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
 
-/* CHECKMARK */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #666;
+}
+
+.modal-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.modal-card p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* ================= SUCCESS CHECKMARK ================= */
 .checkmark-container {
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
 }
 
+/* DEFAULT STATE (NO animation here) */
 .checkmark-circle {
   width: 70px;
   height: 70px;
@@ -133,7 +233,7 @@ input, select {
   transform: rotate(45deg) scale(0);
 }
 
-/* 🔥 ANIMATION TRIGGER */
+/* 🔥 ONLY animate when JS adds .animate */
 .modal.animate .checkmark-circle {
   animation: scaleIn 0.4s ease forwards;
 }
@@ -152,7 +252,8 @@ input, select {
   to { transform: rotate(45deg) scale(1); }
 }
 
-/* BUTTONS */
+
+/* ================= BUTTONS ================= */
 .whatsapp-btn {
   display: block;
   margin-top: 15px;
@@ -161,6 +262,11 @@ input, select {
   padding: 14px;
   border-radius: 10px;
   text-decoration: none;
+  font-weight: 600;
+}
+
+.whatsapp-btn:hover {
+  background: #1ebe5d;
 }
 
 .modal-secondary-btn {
@@ -171,11 +277,35 @@ input, select {
   width: 100%;
   border-radius: 10px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
-/* RESPONSIVE */
+
+/* ================= TEXT ================= */
+.note-text {
+  font-size: 14px;
+  color: #666;
+  margin: 12px 0 18px;
+}
+
+
+/* ================= RESPONSIVE ================= */
 @media (min-width: 768px) {
   .hero {
     height: 420px;
+    padding: 40px 50px;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    max-width: 520px;
+  }
+
+  .form-container {
+    padding: 35px 30px 40px;
   }
 }
