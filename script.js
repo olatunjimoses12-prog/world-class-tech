@@ -35,20 +35,19 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
       form.reset();
 
-      // 🔥 RESET MODAL + ANIMATION CLASS
-      modal.classList.add("hidden");
+      // 🔥 RESET STATE
       modal.classList.remove("animate");
+      modal.classList.add("hidden");
 
-      // force reflow (important)
-      void modal.offsetWidth;
-
-      // 🔥 SHOW MODAL + TRIGGER ANIMATION
-      modal.classList.remove("hidden");
-      modal.classList.add("animate");
-
-      // ✅ WHATSAPP REDIRECT (MOBILE SAFE)
+      // 🔥 RE-TRIGGER ANIMATION CLEANLY
       setTimeout(() => {
-        window.open("https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF", "_self");
+        modal.classList.remove("hidden");
+        modal.classList.add("animate");
+      }, 50);
+
+      // ✅ MOBILE SAFE REDIRECT
+      setTimeout(() => {
+        window.location.href = "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
       }, 3000);
 
     } else {
@@ -61,20 +60,22 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-
-// ✅ CLOSE MODAL (X BUTTON)
+// CLOSE MODAL (X)
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
+  modal.classList.remove("animate");
 });
 
-// ✅ CLOSE MODAL (BUTTON)
+// CLOSE MODAL (BUTTON)
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
+  modal.classList.remove("animate");
 });
 
-// ✅ CLICK OUTSIDE TO CLOSE
+// CLICK OUTSIDE
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.add("hidden");
+    modal.classList.remove("animate");
   }
 });
