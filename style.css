@@ -270,8 +270,8 @@ select:focus {
 }
 
 .modal-secondary-btn {
-  background: #eee;
-  color: #555;
+  background: #f54a0a;
+  color: white;
   padding: 14px;
   border: none;
   width: 100%;
