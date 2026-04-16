@@ -1,4 +1,4 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -175,9 +175,9 @@ select:focus {
 .modal-card {
   background: white;
   width: 100%;
-  max-width: 420px;
-  border-radius: 24px;
-  padding: 28px 22px;
+  max-width: 380px;
+  border-radius: 20px;
+  padding: 22px;
   text-align: center;
   position: relative;
   box-shadow: 0 20px 40px rgba(0,0,0,0.18);
@@ -185,26 +185,25 @@ select:focus {
 
 .close-btn {
   position: absolute;
-  top: 16px;
-  right: 18px;
+  top: 12px;
+  right: 14px;
   border: none;
   background: none;
-  font-size: 30px;
+  font-size: 26px;
   cursor: pointer;
   color: #666;
 }
 
 .modal-card h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .modal-card p {
-  font-size: 15px;
+  font-size: 14px;
   color: #333;
   line-height: 1.6;
 }
-
 
 
 /* ================= SUCCESS CHECKMARK ================= */
@@ -214,18 +213,12 @@ select:focus {
   margin-bottom: 15px;
 }
 
-/* REMOVE animation from default state */
 .checkmark-circle {
   width: 70px;
   height: 70px;
   background: #25D366;
   border-radius: 50%;
   position: relative;
-}
-
-/* ONLY animate when modal is visible */
-.modal:not(.hidden) .checkmark-circle {
-  animation: scaleIn 0.4s ease forwards;
 }
 
 .checkmark {
@@ -239,8 +232,12 @@ select:focus {
   transform: rotate(45deg) scale(0);
 }
 
-/* animate check ONLY when modal is open */
-.modal:not(.hidden) .checkmark {
+/* 🔥 ANIMATION TRIGGER */
+.modal.animate .checkmark-circle {
+  animation: scaleIn 0.4s ease forwards;
+}
+
+.modal.animate .checkmark {
   animation: drawCheck 0.4s 0.3s ease forwards;
 }
 
@@ -285,7 +282,7 @@ select:focus {
 
 /* ================= TEXT ================= */
 .note-text {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
   margin: 12px 0 18px;
 }

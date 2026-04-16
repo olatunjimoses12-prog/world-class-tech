@@ -35,22 +35,20 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
       form.reset();
 
-      // 🔥 FORCE MODAL + ANIMATION RESTART
+      // 🔥 RESET MODAL + ANIMATION CLASS
       modal.classList.add("hidden");
-      void modal.offsetWidth; // reflow trick
+      modal.classList.remove("animate");
+
+      // force reflow (important)
+      void modal.offsetWidth;
+
+      // 🔥 SHOW MODAL + TRIGGER ANIMATION
       modal.classList.remove("hidden");
+      modal.classList.add("animate");
 
-      // 🔥 FORCE CHECKMARK ANIMATION RESTART
-      const checkmark = document.querySelector(".checkmark");
-      if (checkmark) {
-        checkmark.style.animation = "none";
-        checkmark.offsetHeight; // trigger reflow
-        checkmark.style.animation = "";
-      }
-
-      // ✅ MOBILE SAFE REDIRECT
+      // ✅ WHATSAPP REDIRECT (MOBILE SAFE)
       setTimeout(() => {
-        window.location.href = "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
+        window.open("https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF", "_self");
       }, 3000);
 
     } else {
@@ -63,16 +61,18 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// CLOSE MODAL
+
+// ✅ CLOSE MODAL (X BUTTON)
 closeModal.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
+// ✅ CLOSE MODAL (BUTTON)
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
 
-// CLICK OUTSIDE TO CLOSE
+// ✅ CLICK OUTSIDE TO CLOSE
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.add("hidden");
