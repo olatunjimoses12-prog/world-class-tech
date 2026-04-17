@@ -37,12 +37,20 @@ body {
 }
 
 .logo {
-  width: 65px;
+  width: 120px;
   height: 65px;
   border-radius: 50%;
   object-fit: cover;
   background: white;
   padding: 4px;
+  cursor: pointer;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .hero-content {
