@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -13,7 +13,10 @@
     <div class="overlay"></div>
 
     <div class="topbar">
-      <img src="logo.PNG" alt="WCTA Logo" class="logo" />
+      <!-- ✅ LOGO NOW CLICKABLE -->
+      <a href="https://worldclass-tech-academy.vercel.app/" target="_blank">
+        <img src="logo.PNG" alt="WCTA Logo" class="logo" />
+      </a>
     </div>
 
     <div class="hero-content">
@@ -76,51 +79,50 @@
   </a>
 
   <!-- Success Modal -->
-<div class="modal hidden" id="successModal">
-  <div class="modal-card">
-    <button class="close-btn" id="closeModal">&times;</button>
+  <div class="modal hidden" id="successModal">
+    <div class="modal-card">
+      <button class="close-btn" id="closeModal">&times;</button>
 
-    <!-- ✅ ANIMATED CHECKMARK -->
-    <div class="checkmark-container">
-      <div class="checkmark-circle">
-        <div class="checkmark"></div>
+      <!-- Animated Checkmark -->
+      <div class="checkmark-container">
+        <div class="checkmark-circle">
+          <div class="checkmark"></div>
+        </div>
       </div>
+
+      <h3>Application Successful</h3>
+
+      <p>
+        Thank you for registering with <strong>World Class Tech Academy</strong>.
+        Your application has been received successfully.
+      </p>
+
+      <p style="margin-top: 10px; font-weight: 500;">
+        Join your cohort WhatsApp group now 👇
+      </p>
+
+      <a
+        href="https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF?mode=gi_t"
+        target="_blank"
+        class="whatsapp-btn"
+      >
+        Join WhatsApp Group
+      </a>
+
+      <p class="note-text">
+        After joining the group, you can close this window. All important updates,
+        class schedules, and announcements will be shared in the WhatsApp group.
+      </p>
+
+      <p id="redirectText" style="font-size: 13px; color: #888;">
+        Redirecting you to WhatsApp in 3 seconds...
+      </p>
+
+      <button class="modal-secondary-btn" id="closeModalBtn">
+        Close this window
+      </button>
     </div>
-
-    <h3>Application Successful</h3>
-
-    <p>
-      Thank you for registering with <strong>World Class Tech Academy</strong>.
-      Your application has been received successfully.
-    </p>
-
-    <p style="margin-top: 10px; font-weight: 500;">
-      Join your cohort WhatsApp group now 👇
-    </p>
-
-    <a
-      href="https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF?mode=gi_t"
-      target="_blank"
-      class="whatsapp-btn"
-    >
-      Join WhatsApp Group
-    </a>
-
-    <p class="note-text">
-      After joining the group, you can close this window. All important updates,
-      class schedules, and announcements will be shared in the WhatsApp group.
-    </p>
-
-    <!-- OPTIONAL redirect text -->
-    <p id="redirectText" style="font-size: 13px; color: #888;">
-      Redirecting you to WhatsApp in 3 seconds...
-    </p>
-
-    <button class="modal-secondary-btn" id="closeModalBtn">
-      Close this window
-    </button>
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
