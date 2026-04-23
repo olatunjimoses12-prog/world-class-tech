@@ -1,47 +1,44 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Class Tech Academy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
 
-  <!-- HERO -->
+  <!-- Hero Section -->
   <section class="hero">
     <div class="overlay"></div>
 
     <div class="topbar">
+      <!-- ✅ LOGO NOW CLICKABLE -->
       <a href="https://worldclass-tech-academy.vercel.app/" target="_blank">
         <img src="logo.PNG" alt="WCTA Logo" class="logo" />
       </a>
     </div>
 
     <div class="hero-content">
-      <h1>Start Your Tech Journey Today</h1>
-      <p>
-        Take the next step towards in-demand digital skills and a successful career.
-      </p>
+      <h1>World Class Tech Academy</h1>
+      <p>Learn in-demand digital skills and join a thriving tech community.</p>
     </div>
   </section>
 
-
-  <!-- FORM -->
+  <!-- Registration Section -->
   <section class="form-section">
     <div class="form-container">
-
       <h2>One last step, let's get to know you</h2>
       <p class="subtitle">Fill in your details to get started.</p>
 
       <form id="form">
 
-        <!-- NAME ROW -->
-        <div class="input-row">
-          <div>
-            <label>First Name</label>
-            <input type="text" id="firstName" placeholder="First Name" required />
-          </div>
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="First Name" required />
 
-          <div>
-            <label>Last Name</label>
-            <input type="text" id="lastName" placeholder="Last Name" required />
-          </div>
-        </div>
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="Last Name" required />
 
-        <!-- COURSE -->
         <label>Course</label>
         <select id="course" required>
           <option value="">Choose a course</option>
@@ -52,7 +49,6 @@
           <option>Customer Services</option>
         </select>
 
-        <!-- COHORT -->
         <label>Cohort</label>
         <select id="cohort" required>
           <option value="">Choose a cohort</option>
@@ -61,38 +57,33 @@
           <option>Evening Cohort</option>
         </select>
 
-        <!-- PHONE -->
         <label>Phone Number</label>
-        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="text" id="phone" placeholder="Phone Number" required />
 
-        <!-- EMAIL -->
         <label>Email Address</label>
         <input type="email" id="email" placeholder="Email Address" required />
 
-        <!-- BUTTON -->
-        <button type="submit" class="submit-btn">
-          Enrol Now
-        </button>
-
+        <button type="submit" class="submit-btn">Register</button>
       </form>
     </div>
   </section>
 
-
-  <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/2349067441498"
-     class="whatsapp-float"
-     target="_blank">
-     💬
+  <!-- WhatsApp Floating Button -->
+  <a
+    href="https://wa.me/2349067441498"
+    class="whatsapp-float"
+    target="_blank"
+    aria-label="Chat on WhatsApp"
+  >
+    💬
   </a>
 
-
-  <!-- SUCCESS MODAL -->
+  <!-- Success Modal -->
   <div class="modal hidden" id="successModal">
     <div class="modal-card">
-
       <button class="close-btn" id="closeModal">&times;</button>
 
+      <!-- Animated Checkmark -->
       <div class="checkmark-container">
         <div class="checkmark-circle">
           <div class="checkmark"></div>
@@ -110,27 +101,29 @@
         Join your cohort WhatsApp group now 👇
       </p>
 
-      <a href="https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF?mode=gi_t"
-         target="_blank"
-         class="whatsapp-btn">
-         Join WhatsApp Group
+      <a
+        href="https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF?mode=gi_t"
+        target="_blank"
+        class="whatsapp-btn"
+      >
+        Join WhatsApp Group
       </a>
 
       <p class="note-text">
-        All updates, schedules, and announcements will be shared in the group.
+        After joining the group, you can close this window. All important updates,
+        class schedules, and announcements will be shared in the WhatsApp group.
       </p>
 
       <p id="redirectText" style="font-size: 13px; color: #888;">
-        Redirecting to WhatsApp...
+        Redirecting you to WhatsApp in 3 seconds...
       </p>
 
       <button class="modal-secondary-btn" id="closeModalBtn">
         Close this window
       </button>
-
     </div>
   </div>
 
   <script src="script.js"></script>
-
 </body>
+</html>
