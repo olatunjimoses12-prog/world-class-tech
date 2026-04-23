@@ -16,7 +16,7 @@ body {
 .hero {
   position: relative;
   height: 320px;
-  background: url("hero.PNG") center/cover no-repeat;
+  background: url("imagehero.png") center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
