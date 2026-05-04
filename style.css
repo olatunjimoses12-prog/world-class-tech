@@ -355,7 +355,7 @@ select:focus {
 .text-track {
   display: flex;              /* was inline-block ❌ */
   width: max-content;         /* ensures full width */
-  animation: slideText 28s linear infinite;
+  animation: slideText 10s linear infinite;
 }
 
 /* spacing */
