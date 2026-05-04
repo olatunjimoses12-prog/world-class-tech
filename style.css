@@ -317,3 +317,25 @@ select:focus {
     padding: 35px 30px 40px;
   }
 }
+
+.enroll-banner-pro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0d1b4c;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.enroll-banner-pro .badge {
+  background: #ff5a1f;
+  color: white;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 5px;
+}
