@@ -339,3 +339,33 @@ select:focus {
   font-size: 11px;
   border-radius: 5px;
 }
+
+/* Keep your existing styles, then add below */
+
+/* Wrapper hides overflow */
+.text-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* Moving text */
+.text-track {
+  display: inline-block;
+  animation: slideText 20s linear infinite;
+}
+
+/* spacing between repeats */
+.text-track span {
+  padding-right: 50px;
+}
+
+/* Smooth animation */
+@keyframes slideText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
