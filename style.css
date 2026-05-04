@@ -7,11 +7,8 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background: #0d1b4c; /* full navy background */
-  color: #fff;
-  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
   
 }
 
@@ -380,5 +377,6 @@ select:focus {
 .text-track .item {
   margin-right: 100px; /* clean gap between repeats */
   white-space: nowrap;
+
 
 }
