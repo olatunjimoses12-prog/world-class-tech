@@ -380,3 +380,138 @@ select:focus {
 
 
 }
+
+
+/* ================= SCHOLARSHIP SECTION ================= */
+
+.scholarship-section {
+  margin-top: 40px;
+}
+
+.scholarship-banner img {
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 28px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.section-title h2 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.section-title span {
+  color: #f54a0a;
+}
+
+.section-title p {
+  color: #666;
+  margin-top: 8px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.course-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px 20px;
+  text-align: center;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.icon {
+  font-size: 42px;
+  margin-bottom: 14px;
+}
+
+.course-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #777;
+}
+
+.old-price {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: line-through;
+  margin: 8px 0 18px;
+}
+
+.price-label.new {
+  font-weight: 700;
+}
+
+.new-price {
+  font-size: 38px;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.blue {
+  color: #2457ff;
+}
+
+.green {
+  color: #1db954;
+}
+
+.purple {
+  color: #7c3aed;
+}
+
+.orange {
+  color: #f54a0a;
+}
+
+.save-box {
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.blue-bg {
+  background: #edf2ff;
+  color: #2457ff;
+}
+
+.green-bg {
+  background: #e9fceb;
+  color: #1db954;
+}
+
+.purple-bg {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.orange-bg {
+  background: #fff1eb;
+  color: #f54a0a;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
