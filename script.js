@@ -2,9 +2,14 @@ const form = document.getElementById("form");
 const modal = document.getElementById("successModal");
 const closeModal = document.getElementById("closeModal");
 const closeModalBtn = document.getElementById("closeModalBtn");
+const submitBtn = document.getElementById("submitBtn");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  // ✅ LOADING STATE
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = "Processing...";
 
   const firstName = document.getElementById("firstName").value.trim();
   const lastName = document.getElementById("lastName").value.trim();
@@ -32,14 +37,19 @@ form.addEventListener("submit", async (e) => {
     const data = await response.json();
     console.log("API response:", data);
 
+    // ✅ REMOVE LOADING
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = "Register";
+
     if (response.ok) {
+
       form.reset();
 
       // 🔥 RESET STATE
       modal.classList.remove("animate");
       modal.classList.add("hidden");
 
-      // 🔥 RE-TRIGGER ANIMATION CLEANLY
+      // 🔥 RE-TRIGGER ANIMATION
       setTimeout(() => {
         modal.classList.remove("hidden");
         modal.classList.add("animate");
@@ -47,7 +57,8 @@ form.addEventListener("submit", async (e) => {
 
       // ✅ MOBILE SAFE REDIRECT
       setTimeout(() => {
-        window.location.href = "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
+        window.location.href =
+          "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
       }, 3000);
 
     } else {
@@ -55,10 +66,16 @@ form.addEventListener("submit", async (e) => {
     }
 
   } catch (error) {
+
+    // ✅ REMOVE LOADING IF ERROR
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = "Register";
+
     console.error("Frontend error:", error);
     alert("Error submitting form");
   }
 });
+
 
 // CLOSE MODAL (X)
 closeModal.addEventListener("click", () => {
