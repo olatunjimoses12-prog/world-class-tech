@@ -385,13 +385,19 @@ select:focus {
 /* ================= SCHOLARSHIP SECTION ================= */
 
 .scholarship-section {
-  margin-top: 40px;
+   width: 100%;
+  padding: 60px 30px;
+  background: #fff;
 }
+
+.scholarship-wrapper {
+  max-width: 1300px;
+  margin: auto;
 
 .scholarship-banner img {
   width: 100%;
-  border-radius: 16px;
-  margin-bottom: 28px;
+  border-radius: 20px;
+  display: block;
 }
 
 .section-title {
@@ -414,9 +420,10 @@ select:focus {
 }
 
 .course-grid {
+   margin-top: 40px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
 .course-card {
