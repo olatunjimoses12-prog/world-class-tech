@@ -515,3 +515,162 @@ select:focus {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+/* ================= FEATURES ================= */
+.features-section{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  margin-top:40px;
+}
+
+.feature-box{
+  background:#fff;
+  padding:20px 15px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.06);
+}
+
+.feature-box span{
+  font-size:30px;
+  display:block;
+  margin-bottom:10px;
+}
+
+.feature-box p{
+  font-size:15px;
+  font-weight:600;
+  color:#111;
+}
+
+
+/* ================= HELP SECTION ================= */
+.help-section{
+  margin-top:35px;
+  background:#eef4ff;
+  border-radius:20px;
+  padding:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.help-left{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.help-icon{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+}
+
+.help-left h3{
+  font-size:28px;
+  margin-bottom:5px;
+}
+
+.help-left p{
+  color:#555;
+  font-size:15px;
+}
+
+.help-btn{
+  background:#031a52;
+  color:#fff;
+  text-decoration:none;
+  padding:16px 28px;
+  border-radius:12px;
+  font-weight:600;
+}
+
+
+/* ================= FOOTER ================= */
+.footer{
+  margin-top:50px;
+  background:#03133f;
+  color:#fff;
+  padding:50px 20px 25px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:35px;
+}
+
+.footer h2{
+  font-size:26px;
+  margin-bottom:12px;
+}
+
+.footer h4{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer p{
+  color:#d8d8d8;
+  line-height:1.7;
+}
+
+.footer ul{
+  list-style:none;
+}
+
+.footer ul li{
+  margin-bottom:12px;
+  color:#d8d8d8;
+}
+
+.footer a{
+  color:#d8d8d8;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  margin-top:40px;
+  text-align:center;
+  color:#bbb;
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:20px;
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+  .help-section{
+    text-align:center;
+    justify-content:center;
+  }
+
+  .help-left{
+    flex-direction:column;
+  }
+
+  .help-btn{
+    width:100%;
+    text-align:center;
+  }
+
+}
