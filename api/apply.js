@@ -93,7 +93,7 @@ export default async function handler(req, res) {
 
     // 3. Send email to student
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`
       to: email,
       subject: "✅ Application Received | World Class Tech Academy",
       html: studentHtml
