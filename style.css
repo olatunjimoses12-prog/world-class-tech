@@ -680,7 +680,26 @@ select:focus {
   cursor:not-allowed;
 }
 
-.whatsapp-float img{
-  width:32px;
-  height:32px;
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 18px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+  text-decoration: none;
+}
+
+/* 🔥 THIS FIXES THE SMALL ICON PROBLEM */
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
 }
