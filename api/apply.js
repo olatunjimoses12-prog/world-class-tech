@@ -8,12 +8,14 @@ export default async function handler(req, res) {
   const { name, email, phone, course } = req.body;
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  host: "smtp.zoho.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
   try {
     // 1. Send data to Google Sheets
@@ -93,11 +95,11 @@ export default async function handler(req, res) {
 
     // 3. Send email to student
     await transporter.sendMail({
-      from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`
-      to: email,
-      subject: "✅ Application Received | World Class Tech Academy",
-      html: studentHtml
-    });
+  from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
+  to: email,
+  subject: "✅ Application Received | World Class Tech Academy",
+  html: studentHtml
+});
 
     // 4. Send admin notification
     await transporter.sendMail({
