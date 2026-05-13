@@ -60,7 +60,7 @@ export default async function handler(req, res) {
 
 <p>
   Thank you for applying to 
-  <strong>World Class Tech Academy</strong>.
+  <strong>World Class Tech Academy</strong>.${cohort}
 </p>
 
 <p>
