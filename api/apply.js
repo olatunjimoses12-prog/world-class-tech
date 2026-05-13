@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
+
   if (req.method !== "POST") {
     return res.status(405).json({
       message: "Method Not Allowed"
@@ -9,7 +10,7 @@ export default async function handler(req, res) {
 
   const { name, email, phone, course } = req.body;
 
-  // ================= EMAIL TRANSPORTER =================
+  // ✅ ZOHO SMTP
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.com",
     port: 465,
@@ -22,37 +23,54 @@ export default async function handler(req, res) {
 
   try {
 
-    // ================= SEND TO GOOGLE SHEETS =================
-    const sheetResponse = await fetch(process.env.GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        course
-      })
-    });
+    // =========================
+    // ✅ SAVE TO GOOGLE SHEETS
+    // =========================
+    const sheetResponse = await fetch(
+      process.env.GOOGLE_SCRIPT_URL,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          course
+        })
+      }
+    );
 
-    // safer JSON handling
-    let sheetData = {};
+    // ✅ safer parsing
+    const rawText = await sheetResponse.text();
+
+    let sheetData;
 
     try {
-      sheetData = await sheetResponse.json();
+      sheetData = JSON.parse(rawText);
     } catch (err) {
-      console.log("Sheet response is not JSON");
-    }
+      console.log("Google Script Raw Response:", rawText);
 
-    // ================= DUPLICATE CHECK =================
-    if (sheetData.success === false) {
-      return res.status(400).json({
-        message: sheetData.message || "Duplicate application detected"
+      return res.status(500).json({
+        message: "Invalid response from Google Script"
       });
     }
 
-    // ================= EMAIL TEMPLATE =================
+    // =========================
+    // ❌ DUPLICATE USER
+    // =========================
+    if (!sheetData.success) {
+      return res.status(400).json({
+        message:
+          sheetData.message ||
+          "Duplicate application detected"
+      });
+    }
+
+    // =========================
+    // ✅ EMAIL TEMPLATE
+    // =========================
     const logoUrl =
       "https://drive.google.com/uc?export=view&id=1rBHDAJ1Lfu84__ycwjv58Lu6DIn8eAoK";
 
@@ -61,62 +79,66 @@ export default async function handler(req, res) {
 
     const studentHtml = `
       <div style="font-family:Arial,sans-serif;background:#f4f6f8;padding:20px;">
-        <div style="max-width:600px;margin:auto;background:#ffffff;border-radius:12px;padding:30px;">
+
+        <div style="max-width:600px;margin:auto;background:#ffffff;border-radius:12px;padding:35px;">
 
           <div style="text-align:center;">
-            <img 
-              src="${logoUrl}" 
-              style="max-width:180px;margin-bottom:20px;"
-            />
+            <img src="${logoUrl}"
+                 style="max-width:170px;margin-bottom:20px;" />
           </div>
 
           <h2 style="color:#0a2540;">
             Application Successfully Received 🎉
           </h2>
 
-          <p>Dear <strong>${name}</strong>,</p>
+          <p>
+            Dear <strong>${name}</strong>,
+          </p>
 
           <p>
-            Thank you for applying to 
+            Thank you for applying to
             <strong>World Class Tech Academy</strong>.
           </p>
 
           <p>
-            We have successfully received your application for 
+            We have successfully received your application for
             <strong>${course}</strong>.
           </p>
 
           <p>
-            Your scholarship application and free class data support eligibility 
-            are currently under review by our admissions team.
+            Your scholarship application and free class
+            data support eligibility are currently under review
+            by our admissions team.
           </p>
 
           <p>
-            You’re one step closer to joining a practical tech learning experience 
-            with live classes, projects, mentorship, and certification.
+            You’re one step closer to joining a practical
+            tech learning experience with live classes,
+            projects, mentorship, and certification.
           </p>
 
           <p>
-            Our admissions team will contact you within 
-            <strong>24–48 hours</strong> with the next steps regarding your 
-            admission and scholarship status.
+            Our admissions team will contact you within
+            <strong>24–48 hours</strong>
+            with the next steps regarding your admission
+            and scholarship status.
           </p>
 
           <div style="text-align:center;margin:30px 0;">
-            <a
-              href="${whatsappLink}"
-              style="
-                background:#25D366;
-                color:#ffffff;
-                padding:14px 24px;
-                text-decoration:none;
-                border-radius:8px;
-                font-weight:bold;
-                display:inline-block;
-              "
-            >
-              💬 Join Student Community
+
+            <a href="${whatsappLink}"
+               style="
+                 background:#25D366;
+                 color:#ffffff;
+                 padding:14px 24px;
+                 text-decoration:none;
+                 border-radius:8px;
+                 font-weight:bold;
+                 display:inline-block;
+               ">
+               💬 Join Student Community
             </a>
+
           </div>
 
           <p>
@@ -125,25 +147,39 @@ export default async function handler(req, res) {
             World Class Tech Academy
           </p>
 
-          <hr style="margin:30px 0;border:none;border-top:1px solid #e5e5e5;">
+          <hr style="
+            margin:30px 0;
+            border:none;
+            border-top:1px solid #e5e5e5;
+          ">
 
-          <p style="font-size:12px;color:#666;text-align:center;">
-            © 2026 World Class Tech Academy. All rights reserved.
+          <p style="
+            font-size:12px;
+            color:#666;
+            text-align:center;
+          ">
+            © 2026 World Class Tech Academy.
+            All rights reserved.
           </p>
 
         </div>
       </div>
     `;
 
-    // ================= SEND EMAIL TO STUDENT =================
+    // =========================
+    // ✅ SEND EMAIL TO STUDENT
+    // =========================
     await transporter.sendMail({
       from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: "✅ Application Successfully Received",
+      subject:
+        "✅ Application Received | World Class Tech Academy",
       html: studentHtml
     });
 
-    // ================= ADMIN EMAIL =================
+    // =========================
+    // ✅ SEND ADMIN EMAIL
+    // =========================
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -158,7 +194,9 @@ export default async function handler(req, res) {
       `
     });
 
-    // ================= SUCCESS RESPONSE =================
+    // =========================
+    // ✅ SUCCESS RESPONSE
+    // =========================
     return res.status(200).json({
       success: true,
       message: "Application submitted successfully"
