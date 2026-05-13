@@ -54,62 +54,41 @@ export default async function handler(req, res) {
           <img src="${logoUrl}" style="max-width:180px; margin-bottom:20px;">
         </div>
 
-        <h2 style="color:#0a2540;">Application Successfully Received 🎉</h2>
+        <h2 style="color:#0a2540;">Application Received 🎉</h2>
 
-<p>Dear <strong>${name}</strong>,</p>
+        <p>Dear <strong>${name}</strong>,</p>
 
-<p>
-  Thank you for applying to 
-  <strong>World Class Tech Academy</strong>.${cohort}
-</p>
+        <p>
+          Thank you for applying to <strong>World Class Tech Academy</strong>.
+          We have successfully received your application for 
+          <strong>${course}</strong>.
+        </p>
 
-<p>
-  We have successfully received your application for 
-  <strong>${course}</strong>.
-</p>
+        <p>
+          Our admissions team will contact you within 
+          <strong>3–5 business days</strong>.
+        </p>
 
-<p>
-  Your scholarship application and free class data support eligibility 
-  are currently under review by our admissions team.
-</p>
+        <div style="text-align:center; margin:25px 0;">
+          <a href="${whatsappLink}"
+             style="background:#25D366; color:#ffffff; padding:14px 24px;
+             text-decoration:none; border-radius:6px; font-weight:bold;">
+            💬 Join WhatsApp Group
+          </a>
+        </div>
 
-<p>
-  You’re one step closer to joining a practical tech learning experience 
-  with live classes, projects, mentorship, and certification.
-</p>
+        <p>
+          Best regards,<br>
+          <strong>Admissions Team</strong><br>
+          World Class Tech Academy
+        </p>
 
-<p>
-  Our admissions team will contact you within 
-  <strong>24–48 hours</strong> with the next steps regarding your 
-  admission and scholarship status.
-</p>
+        <hr style="margin:30px 0;">
 
-<div style="text-align:center; margin:25px 0;">
-  <a href="${whatsappLink}"
-     style="
-       background:#25D366;
-       color:#ffffff;
-       padding:14px 24px;
-       text-decoration:none;
-       border-radius:8px;
-       font-weight:bold;
-       display:inline-block;
-     ">
-    💬 Join Student Community
-  </a>
-</div>
+        <p style="font-size:12px; color:#666;">
+          This is an automated message. Please do not reply.
+        </p>
 
-<p>
-  Best regards,<br>
-  <strong>Admissions Team</strong><br>
-  World Class Tech Academy
-</p>
-
-<hr style="margin:30px 0; border:none; border-top:1px solid #e5e5e5;">
-
-<p style="font-size:12px; color:#666; text-align:center;">
-  © 2026 World Class Tech Academy. All rights reserved.
-</p>
       </div>
     </div>
     `;
