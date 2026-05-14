@@ -2,15 +2,21 @@ import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
 
+  // =========================
+  // ❌ ONLY ALLOW POST
+  // =========================
   if (req.method !== "POST") {
     return res.status(405).json({
+      success: false,
       message: "Method Not Allowed"
     });
   }
 
   const { name, email, phone, course } = req.body;
 
+  // =========================
   // ✅ ZOHO SMTP
+  // =========================
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.com",
     port: 465,
@@ -26,6 +32,8 @@ export default async function handler(req, res) {
     // =========================
     // ✅ SAVE TO GOOGLE SHEETS
     // =========================
+    console.log("Saving to Google Sheets...");
+
     const sheetResponse = await fetch(
       process.env.GOOGLE_SCRIPT_URL,
       {
@@ -42,17 +50,20 @@ export default async function handler(req, res) {
       }
     );
 
-    // ✅ safer parsing
     const rawText = await sheetResponse.text();
+
+    console.log("Google Script Response:", rawText);
 
     let sheetData;
 
     try {
       sheetData = JSON.parse(rawText);
     } catch (err) {
-      console.log("Google Script Raw Response:", rawText);
+
+      console.error("Google Script JSON Parse Error:", err);
 
       return res.status(500).json({
+        success: false,
         message: "Invalid response from Google Script"
       });
     }
@@ -61,7 +72,11 @@ export default async function handler(req, res) {
     // ❌ DUPLICATE USER
     // =========================
     if (!sheetData.success) {
+
+      console.log("Duplicate detected");
+
       return res.status(400).json({
+        success: false,
         message:
           sheetData.message ||
           "Duplicate application detected"
@@ -78,16 +93,34 @@ export default async function handler(req, res) {
       "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
 
     const studentHtml = `
-      <div style="font-family:Arial,sans-serif;background:#f4f6f8;padding:20px;">
+      <div style="
+        font-family:Arial,sans-serif;
+        background:#f4f6f8;
+        padding:20px;
+      ">
 
-        <div style="max-width:600px;margin:auto;background:#ffffff;border-radius:12px;padding:35px;">
+        <div style="
+          max-width:600px;
+          margin:auto;
+          background:#ffffff;
+          border-radius:12px;
+          padding:35px;
+        ">
 
           <div style="text-align:center;">
-            <img src="${logoUrl}"
-                 style="max-width:170px;margin-bottom:20px;" />
+            <img 
+              src="${logoUrl}"
+              style="
+                max-width:170px;
+                margin-bottom:20px;
+              "
+            />
           </div>
 
-          <h2 style="color:#0a2540;">
+          <h2 style="
+            color:#0a2540;
+            margin-bottom:20px;
+          ">
             Application Successfully Received 🎉
           </h2>
 
@@ -124,19 +157,24 @@ export default async function handler(req, res) {
             and scholarship status.
           </p>
 
-          <div style="text-align:center;margin:30px 0;">
+          <div style="
+            text-align:center;
+            margin:30px 0;
+          ">
 
-            <a href="${whatsappLink}"
-               style="
-                 background:#25D366;
-                 color:#ffffff;
-                 padding:14px 24px;
-                 text-decoration:none;
-                 border-radius:8px;
-                 font-weight:bold;
-                 display:inline-block;
-               ">
-               💬 Join Student Community
+            <a 
+              href="${whatsappLink}"
+              style="
+                background:#25D366;
+                color:#ffffff;
+                padding:14px 24px;
+                text-decoration:none;
+                border-radius:8px;
+                font-weight:bold;
+                display:inline-block;
+              "
+            >
+              💬 Join Student Community
             </a>
 
           </div>
@@ -167,8 +205,10 @@ export default async function handler(req, res) {
     `;
 
     // =========================
-    // ✅ SEND EMAIL TO STUDENT
+    // ✅ SEND STUDENT EMAIL
     // =========================
+    console.log("Sending student email...");
+
     await transporter.sendMail({
       from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -177,22 +217,45 @@ export default async function handler(req, res) {
       html: studentHtml
     });
 
+    console.log("Student email sent successfully");
+
     // =========================
     // ✅ SEND ADMIN EMAIL
     // =========================
+    console.log("Sending admin email...");
+
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: "🚀 New Application Received",
       html: `
-        <h2>New Student Application</h2>
+        <div style="font-family:Arial,sans-serif;">
 
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Course:</b> ${course}</p>
+          <h2>
+            New Student Application
+          </h2>
+
+          <p>
+            <b>Name:</b> ${name}
+          </p>
+
+          <p>
+            <b>Email:</b> ${email}
+          </p>
+
+          <p>
+            <b>Phone:</b> ${phone}
+          </p>
+
+          <p>
+            <b>Course:</b> ${course}
+          </p>
+
+        </div>
       `
     });
+
+    console.log("Admin email sent successfully");
 
     // =========================
     // ✅ SUCCESS RESPONSE
@@ -204,6 +267,9 @@ export default async function handler(req, res) {
 
   } catch (error) {
 
+    // =========================
+    // ❌ FULL ERROR LOG
+    // =========================
     console.error("FULL ERROR:", error);
 
     return res.status(500).json({
