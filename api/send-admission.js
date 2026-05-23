@@ -1,142 +1,100 @@
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
+  // ONLY POST
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      success: false,
+      message: "Method Not Allowed"
+    });
+  }
 
   try {
+    const { name, email, course } = req.body || {};
 
-    // =========================
-    // ✅ ALLOW ONLY POST
-    // =========================
-    if (req.method !== "POST") {
-
-      return res.status(405).json({
-        success: false,
-        message: "Method Not Allowed"
-      });
-    }
-
-    // =========================
-    // ✅ GET DATA
-    // =========================
-    const {
-      name,
-      email,
-      course
-    } = req.body || {};
-
-    console.log(
-      "BODY:",
-      req.body
-    );
-
-    // =========================
-    // ✅ VALIDATE
-    // =========================
-    if (!email) {
-
+    // VALIDATION (IMPORTANT)
+    if (!name || !email || !course) {
       return res.status(400).json({
-
         success: false,
-
-        message:
-          "Email is required"
+        message: "Missing required fields"
       });
     }
 
-    // =========================
-    // ✅ SMTP
-    // =========================
-    const transporter =
-      nodemailer.createTransport({
+    // SMTP TRANSPORT
+    const transporter = nodemailer.createTransport({
+      host: "smtp.zoho.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
 
-        host: "smtp.zoho.com",
+    const logoUrl =
+      "https://drive.google.com/uc?export=view&id=1rBHDAJ1Lfu84__ycwjv58Lu6DIn8eAoK";
 
-        port: 465,
+    const whatsappLink =
+      "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
 
-        secure: true,
-
-        auth: {
-
-          user:
-            process.env.EMAIL_USER,
-
-          pass:
-            process.env.EMAIL_PASS
-        }
-      });
-
-    // =========================
-    // ✅ EMAIL TEMPLATE
-    // =========================
+    // FULL EMAIL (IMPROVED + CLEAN)
     const htmlBody = `
+      <div style="font-family:Arial;background:#f4f6f8;padding:20px">
+        <div style="max-width:600px;margin:auto;background:#fff;padding:25px;border-radius:10px">
 
-      <div style="
-        font-family:Arial;
-        padding:20px;
-      ">
+          <div style="text-align:center">
+            <img src="${logoUrl}" style="max-width:160px"/>
+          </div>
 
-        <h1>
-          Congratulations 🎉
-        </h1>
+          <h2>🎉 Admission Approved</h2>
 
-        <p>
-          Dear ${name},
-        </p>
+          <p>Dear <b>${name}</b>,</p>
 
-        <p>
-          Your admission for
-          <strong>${course}</strong>
-          has been approved.
-        </p>
+          <p>Your admission into <b>${course}</b> has been approved.</p>
 
-        <p>
-          Welcome to
-          World Class Tech Academy.
-        </p>
+          <p>You are now officially part of <b>World Class Tech Academy</b>.</p>
 
+          <ul>
+            <li>Live classes</li>
+            <li>Projects</li>
+            <li>Mentorship</li>
+            <li>Certification</li>
+          </ul>
+
+          <p style="margin-top:20px">
+            Join community:
+          </p>
+
+          <a href="${whatsappLink}"
+            style="display:inline-block;padding:12px 20px;background:#25D366;color:#fff;border-radius:8px;text-decoration:none">
+            Join WhatsApp
+          </a>
+
+          <p style="margin-top:30px">– Admissions Team</p>
+
+        </div>
       </div>
     `;
 
-    // =========================
-    // ✅ SEND MAIL
-    // =========================
     await transporter.sendMail({
-
-      from:
-        `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
-
+      from: `"World Class Tech Academy" <${process.env.EMAIL_USER}>`,
       to: email,
-
-      subject:
-        "🎉 Admission Approved",
-
+      subject: "🎉 Admission Approved",
       html: htmlBody
     });
 
-    // =========================
-    // ✅ SUCCESS
-    // =========================
     return res.status(200).json({
-
       success: true,
-
-      message:
-        "Admission email sent"
+      message: "Admission email sent successfully"
     });
 
   } catch (error) {
-
-    console.log(
-      "FULL ERROR:",
-      error
-    );
+    console.error("EMAIL ERROR:", error);
 
     return res.status(500).json({
-
       success: false,
-
-      message:
-        error.message
+      message: "Email failed",
+      error: error.message
     });
   }
 }
