@@ -2,15 +2,11 @@ import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
 
-  if (req.method !== "POST") {
-
-    return res.status(405).json({
-      message: "Method Not Allowed"
-    });
-  }
-
   try {
 
+    // =========================
+    // ✅ ZOHO SMTP
+    // =========================
     const transporter =
       nodemailer.createTransport({
 
@@ -28,6 +24,9 @@ export default async function handler(req, res) {
         }
       });
 
+    // =========================
+    // ✅ SEND TEST EMAIL
+    // =========================
     await transporter.sendMail({
 
       from:
@@ -35,30 +34,58 @@ export default async function handler(req, res) {
 
       to: "olatunjimoses12@gmail.com",
 
-      subject: "Test Admission Email",
+      subject:
+        "🎉 Admission Approved Test",
 
       html: `
-        <h1>Admission Approved 🎉</h1>
-        <p>This is a test email.</p>
+
+        <div style="
+          font-family:Arial;
+          padding:20px;
+        ">
+
+          <h1>
+            Admission Approved 🎉
+          </h1>
+
+          <p>
+            This is a successful
+            test email from
+            admin@worldclasstechhub.com
+          </p>
+
+        </div>
+
       `
     });
 
+    // =========================
+    // ✅ SUCCESS RESPONSE
+    // =========================
     return res.status(200).json({
 
       success: true,
 
-      message: "Email sent successfully"
+      message:
+        "Email sent successfully"
     });
 
   } catch (error) {
 
-    console.log(error);
+    console.log(
+      "FULL ERROR:",
+      error
+    );
 
+    // =========================
+    // ❌ ERROR RESPONSE
+    // =========================
     return res.status(500).json({
 
       success: false,
 
-      error: error.message
+      error:
+        error.message
     });
   }
 }
