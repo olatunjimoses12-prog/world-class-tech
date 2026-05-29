@@ -19,11 +19,12 @@ form.addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
 
   const formData = {
-    name: `${firstName} ${lastName}`,
-    email,
-    phone,
-    course: `${course} - ${cohort}`
-  };
+  name: `${firstName} ${lastName}`,
+  email,
+  phone,
+  course,
+  cohort
+};
 
   try {
     const response = await fetch("/api/apply", {
