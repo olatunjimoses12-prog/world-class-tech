@@ -84,7 +84,7 @@ export default async function handler(req, res) {
 
           <p>
             We have successfully received your application for 
-            <strong>${course}</strong>.
+            <strong>${course}</strong>.${cohort}
           </p>
 
           <p>
