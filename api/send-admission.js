@@ -72,101 +72,82 @@ export default async function handler(req, res) {
     // =========================
     // ✅ STATIC LINKS
     // =========================
-    const logoUrl =
-      "https://drive.google.com/uc?export=view&id=1rBHDAJ1Lfu84__ycwjv58Lu6DIn8eAoK";
-
-    const whatsappLink =
-      "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
-
-    // =========================
-    // 🎉 EMAIL TEMPLATE
-    // =========================
     const htmlBody = `
-      <div style="
-        font-family: Arial, sans-serif;
-        background:#f4f6f8;
-        padding:20px;
-      ">
+<div style="font-family:Arial,sans-serif;background:#f4f6f8;padding:30px;">
 
-        <div style="
-          max-width:600px;
-          margin:auto;
-          background:#fff;
-          border-radius:12px;
-          padding:30px;
-        ">
+  <div style="max-width:650px;margin:auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.08);">
 
-          <div style="text-align:center;">
-            <img
-              src="${logoUrl}"
-              style="max-width:180px;margin-bottom:20px;"
-            />
-          </div>
+    <!-- HEADER -->
+    <div style="background:#0a2540;padding:25px;text-align:center;">
+      <img src="${logoUrl}" style="max-width:160px;" />
+    </div>
 
-          <h2 style="color:#0a2540;">
-            🎉 Congratulations! Your Admission Has Been Approved
-          </h2>
+    <!-- BODY -->
+    <div style="padding:30px;color:#111827;line-height:1.7;">
 
-          <p>Dear <strong>${name}</strong>,</p>
+      <h2 style="color:#0a2540;margin-bottom:10px;">
+        🎉 Admission Approved
+      </h2>
 
-          <p>
-            We’re excited to welcome you to
-            <strong>World Class Tech Academy</strong>
-          </p>
+      <p style="font-size:16px;">
+        Dear <strong>${name}</strong>,
+      </p>
 
-          <p>
-            <strong>Cohort:</strong>
-            ${cohort || "Not Assigned"}
-          </p>
+      <p>
+        Congratulations! Your application to
+        <strong>World Class Tech Academy</strong>
+        has been successfully reviewed and approved.
+      </p>
 
-          <p>
-            Your application for
-            <strong>${course}</strong>
-            has been approved successfully.
-          </p>
-
-          <ul style="line-height:1.8;color:#333;">
-            <li>Live online classes</li>
-            <li>Practical projects</li>
-            <li>Mentorship support</li>
-            <li>Certification</li>
-            <li>Community access</li>
-          </ul>
-
-          <p>
-            All updates will be shared in the student community group.
-          </p>
-
-          <div style="text-align:center;margin:30px 0;">
-            <a href="${whatsappLink}"
-              style="
-                background:#25D366;
-                color:#fff;
-                padding:14px 24px;
-                text-decoration:none;
-                border-radius:8px;
-                font-weight:bold;
-                display:inline-block;
-              ">
-              💬 Join Student Community
-            </a>
-          </div>
-
-          <p>
-            Best regards,<br>
-            <strong>Admissions Team</strong><br>
-            World Class Tech Academy
-          </p>
-
-          <hr style="margin:30px 0;border:none;border-top:1px solid #eee;"/>
-
-          <p style="font-size:12px;color:#777;text-align:center;">
-            © 2026 World Class Tech Academy
-          </p>
-
-        </div>
+      <!-- DETAILS BOX -->
+      <div style="background:#f8fafc;padding:15px;border-radius:10px;margin:20px 0;">
+        <p style="margin:5px 0;"><strong>Course:</strong> ${course}</p>
+        <p style="margin:5px 0;"><strong>Cohort:</strong> ${cohort || "Not Assigned"}</p>
+        <p style="margin:5px 0;"><strong>Status:</strong> Approved</p>
       </div>
-    `;
+
+      <p>
+        You are now officially part of our scholarship-supported learning program.
+      </p>
+
+      <h3 style="margin-top:25px;">What you get:</h3>
+
+      <ul style="padding-left:18px;color:#333;">
+        <li>Live instructor-led classes</li>
+        <li>Real-world projects</li>
+        <li>Mentorship & guidance</li>
+        <li>Certification upon completion</li>
+        <li>Private student community access</li>
+      </ul>
+
+      <!-- CTA BUTTON -->
+      <div style="text-align:center;margin:30px 0;">
+        <a href="${whatsappLink}"
+          style="background:#25D366;color:white;padding:14px 22px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">
+          💬 Join Student Community
+        </a>
+      </div>
+
+      <p>
+        Please ensure you join the community to receive class updates, schedules, and onboarding instructions.
+      </p>
+
+      <p style="margin-top:30px;">
+        Best regards,<br>
+        <strong>Admissions Team</strong><br>
+        World Class Tech Academy
+      </p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background:#f1f5f9;text-align:center;padding:15px;font-size:12px;color:#6b7280;">
+      © 2026 World Class Tech Academy • All rights reserved
+    </div>
+
+  </div>
+</div>
+`;
 
     // =========================
     // ✅ SEND EMAIL
