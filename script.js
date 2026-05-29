@@ -17,7 +17,9 @@ form.addEventListener("submit", async (e) => {
   const cohort = document.getElementById("cohort").value;
   const phone = document.getElementById("phone").value.trim();
   const email = document.getElementById("email").value.trim();
-
+  
+  console.log("Selected course:", course);
+  console.log("Selected cohort:", cohort);
   const formData = {
   name: `${firstName} ${lastName}`,
   email,
