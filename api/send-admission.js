@@ -69,67 +69,113 @@ export default async function handler(req, res) {
     await transporter.verify();
     console.log("SMTP VERIFIED SUCCESSFULLY");
 
-    // =========================
-    // ✅ STATIC LINKS
-    // =========================
-    const htmlBody = `
-<div style="font-family:Arial,sans-serif;background:#f4f6f8;padding:30px;">
+   // =========================
+// ✅ STATIC LINKS
+// =========================
+const logoUrl =
+  "https://drive.google.com/uc?export=view&id=1rBHDAJ1Lfu84__ycwjv58Lu6DIn8eAoK";
 
-  <div style="max-width:650px;margin:auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+const whatsappLink =
+  "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
+
+// =========================
+// 🎉 EMAIL TEMPLATE (FIXED)
+// =========================
+const htmlBody = `
+<div style="
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  padding:30px;
+">
+
+  <div style="
+    max-width:600px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  ">
 
     <!-- HEADER -->
     <div style="background:#0a2540;padding:25px;text-align:center;">
-      <img src="${logoUrl}" style="max-width:160px;" />
+      <img
+        src="${logoUrl}"
+        style="max-width:160px;"
+      />
     </div>
 
     <!-- BODY -->
     <div style="padding:30px;color:#111827;line-height:1.7;">
 
-      <h2 style="color:#0a2540;margin-bottom:10px;">
-        🎉 Admission Approved
+      <h2 style="color:#0a2540;margin-bottom:15px;">
+        🎉 Congratulations! Your Admission Has Been Approved
       </h2>
 
-      <p style="font-size:16px;">
+      <p style="font-size:15px;">
         Dear <strong>${name}</strong>,
       </p>
 
       <p>
-        Congratulations! Your application to
-        <strong>World Class Tech Academy</strong>
-        has been successfully reviewed and approved.
+        We’re excited to officially welcome you to
+        <strong>World Class Tech Academy</strong>.
       </p>
 
-      <!-- DETAILS BOX -->
-      <div style="background:#f8fafc;padding:15px;border-radius:10px;margin:20px 0;">
-        <p style="margin:5px 0;"><strong>Course:</strong> ${course}</p>
-        <p style="margin:5px 0;"><strong>Cohort:</strong> ${cohort || "Not Assigned"}</p>
-        <p style="margin:5px 0;"><strong>Status:</strong> Approved</p>
+      <!-- INFO BOX -->
+      <div style="
+        background:#f8fafc;
+        padding:15px;
+        border-radius:10px;
+        margin:20px 0;
+        border-left:4px solid #0a2540;
+      ">
+
+        <p style="margin:5px 0;">
+          <strong>Course:</strong> ${course}
+        </p>
+
+        <p style="margin:5px 0;">
+          <strong>Cohort:</strong> ${cohort || "Not Assigned"}
+        </p>
+
+        <p style="margin:5px 0;">
+          <strong>Status:</strong> Approved
+        </p>
+
       </div>
 
       <p>
-        You are now officially part of our scholarship-supported learning program.
+        You are now part of our structured learning program designed to take you from beginner to job-ready level.
       </p>
 
-      <h3 style="margin-top:25px;">What you get:</h3>
+      <h3 style="margin-top:25px;">What you will get:</h3>
 
-      <ul style="padding-left:18px;color:#333;">
+      <ul style="padding-left:18px;color:#333;line-height:1.8;">
         <li>Live instructor-led classes</li>
-        <li>Real-world projects</li>
-        <li>Mentorship & guidance</li>
+        <li>Hands-on real-world projects</li>
+        <li>Mentorship & career guidance</li>
         <li>Certification upon completion</li>
-        <li>Private student community access</li>
+        <li>Access to private student community</li>
       </ul>
 
-      <!-- CTA BUTTON -->
+      <!-- CTA -->
       <div style="text-align:center;margin:30px 0;">
         <a href="${whatsappLink}"
-          style="background:#25D366;color:white;padding:14px 22px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;">
+          style="
+            background:#25D366;
+            color:#fff;
+            padding:14px 22px;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:bold;
+            display:inline-block;
+          ">
           💬 Join Student Community
         </a>
       </div>
 
       <p>
-        Please ensure you join the community to receive class updates, schedules, and onboarding instructions.
+        Kindly join the community group to receive class updates, schedules, and onboarding instructions.
       </p>
 
       <p style="margin-top:30px;">
@@ -141,14 +187,19 @@ export default async function handler(req, res) {
     </div>
 
     <!-- FOOTER -->
-    <div style="background:#f1f5f9;text-align:center;padding:15px;font-size:12px;color:#6b7280;">
+    <div style="
+      background:#f1f5f9;
+      text-align:center;
+      padding:15px;
+      font-size:12px;
+      color:#6b7280;
+    ">
       © 2026 World Class Tech Academy • All rights reserved
     </div>
 
   </div>
 </div>
 `;
-
     // =========================
     // ✅ SEND EMAIL
     // =========================
