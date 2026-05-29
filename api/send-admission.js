@@ -78,9 +78,6 @@ const logoUrl =
 const whatsappLink =
   "https://chat.whatsapp.com/HSpmuCRldp1FooyDYatmBF";
 
-// =========================
-// 🎉 EMAIL TEMPLATE (FIXED)
-// =========================
 const htmlBody = `
 <div style="
   font-family: Arial, sans-serif;
@@ -94,77 +91,82 @@ const htmlBody = `
     background:#ffffff;
     border-radius:14px;
     overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
   ">
 
     <!-- HEADER -->
     <div style="background:#0a2540;padding:25px;text-align:center;">
-      <img
-        src="${logoUrl}"
-        style="max-width:160px;"
-      />
+      <img src="${logoUrl}" style="max-width:150px;" />
     </div>
 
     <!-- BODY -->
-    <div style="padding:30px;color:#111827;line-height:1.7;">
+    <div style="padding:28px;color:#111827;line-height:1.6;">
 
-      <h2 style="color:#0a2540;margin-bottom:15px;">
-        🎉 Congratulations! Your Admission Has Been Approved
+      <h2 style="color:#0a2540;margin-bottom:12px;">
+        🎉 Congratulations ${name}, You’ve Been Selected!
       </h2>
 
-      <p style="font-size:15px;">
+      <p>
         Dear <strong>${name}</strong>,
       </p>
 
       <p>
-        We’re excited to officially welcome you to
+        We are pleased to inform you that you have been
+        <strong>officially selected</strong> into
         <strong>World Class Tech Academy</strong>.
       </p>
 
-      <!-- INFO BOX -->
+      <div style="
+        background:#fff7ed;
+        padding:12px;
+        border-radius:10px;
+        border-left:4px solid #f97316;
+        margin:18px 0;
+      ">
+        <p style="margin:0;">
+          🎓 You have been awarded an <strong>80% SCHOLARSHIP</strong> for this program.
+        </p>
+      </div>
+
+      <p>
+        This selection reflects your potential, and we are excited to have you join a group of learners committed to building real tech skills.
+      </p>
+
+      <!-- DETAILS -->
       <div style="
         background:#f8fafc;
-        padding:15px;
+        padding:14px;
         border-radius:10px;
         margin:20px 0;
         border-left:4px solid #0a2540;
       ">
-
-        <p style="margin:5px 0;">
-          <strong>Course:</strong> ${course}
-        </p>
-
-        <p style="margin:5px 0;">
-          <strong>Cohort:</strong> ${cohort || "Not Assigned"}
-        </p>
-
-        <p style="margin:5px 0;">
-          <strong>Status:</strong> Approved
-        </p>
-
+        <p><strong>Course:</strong> ${course}</p>
+        <p><strong>Cohort:</strong> ${cohort || "Not Assigned Yet"}</p>
+        <p><strong>Status:</strong> Admission Confirmed</p>
       </div>
 
-      <p>
-        You are now part of our structured learning program designed to take you from beginner to job-ready level.
-      </p>
+      <h3 style="color:#0a2540;margin-top:20px;">
+        What’s Included in Your Program
+      </h3>
 
-      <h3 style="margin-top:25px;">What you will get:</h3>
-
-      <ul style="padding-left:18px;color:#333;line-height:1.8;">
-        <li>Live instructor-led classes</li>
-        <li>Hands-on real-world projects</li>
-        <li>Mentorship & career guidance</li>
+      <ul style="padding-left:18px;color:#333;line-height:1.7;">
+        <li>Live instructor-led training</li>
+        <li>Real-world hands-on projects</li>
+        <li>Mentorship & career support</li>
         <li>Certification upon completion</li>
-        <li>Access to private student community</li>
+        <li>Class Data Support & learning resources</li>
+        <li>Private student community access</li>
       </ul>
 
-      <!-- CTA -->
-      <div style="text-align:center;margin:30px 0;">
+      <div style="
+        text-align:center;
+        margin:25px 0;
+      ">
         <a href="${whatsappLink}"
           style="
             background:#25D366;
             color:#fff;
-            padding:14px 22px;
+            padding:13px 22px;
             text-decoration:none;
             border-radius:8px;
             font-weight:bold;
@@ -175,10 +177,10 @@ const htmlBody = `
       </div>
 
       <p>
-        Kindly join the community group to receive class updates, schedules, and onboarding instructions.
+        Please join the community to receive onboarding details, class schedule, and next steps.
       </p>
 
-      <p style="margin-top:30px;">
+      <p style="margin-top:25px;">
         Best regards,<br>
         <strong>Admissions Team</strong><br>
         World Class Tech Academy
@@ -190,7 +192,7 @@ const htmlBody = `
     <div style="
       background:#f1f5f9;
       text-align:center;
-      padding:15px;
+      padding:12px;
       font-size:12px;
       color:#6b7280;
     ">
