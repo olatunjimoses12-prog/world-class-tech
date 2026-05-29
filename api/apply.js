@@ -79,12 +79,12 @@ export default async function handler(req, res) {
 
           <p>
             Thank you for applying to 
-            <strong>World Class Tech Academy</strong>.
+            <strong>World Class Tech Academy</strong>-<strong>${cohort}</strong>
           </p>
 
           <p>
             We have successfully received your application for 
-            <strong>${course}</strong>.${cohort}
+            <strong>${course}</strong>.
           </p>
 
           <p>

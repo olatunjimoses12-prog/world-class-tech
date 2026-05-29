@@ -153,7 +153,7 @@ if (req.method === "OPTIONS") {
             We’re excited to officially welcome you to
             <strong>
               World Class Tech Academy – Cohort 1.0
-            </strong>.
+            </strong>.<strong>${cohort}</strong>
           </p>
 
           <p>
