@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const { name, email, phone, course } = req.body;
+  const { name, email, phone, course, cohort } = req.body;
 
   // ================= EMAIL TRANSPORTER =================
   const transporter = nodemailer.createTransport({
@@ -29,11 +29,12 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name,
-        email,
-        phone,
-        course
-      })
+  name,
+  email,
+  phone,
+  course,
+  cohort
+})
     });
 
     // safer JSON handling
@@ -152,9 +153,10 @@ export default async function handler(req, res) {
         <h2>New Student Application</h2>
 
         <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Course:</b> ${course}</p>
+<p><b>Email:</b> ${email}</p>
+<p><b>Phone:</b> ${phone}</p>
+<p><b>Course:</b> ${course}</p>
+<p><b>Cohort:</b> ${cohort}</p>
       `
     });
 
