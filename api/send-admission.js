@@ -31,12 +31,13 @@ export default async function handler(req, res) {
     // =========================
     // ✅ SAFE BODY DESTRUCTURE
     // =========================
-    const {
-      name,
-      email,
-      course,
-      cohort
-    } = req.body || {};
+   const {
+  name,
+  email,
+  course,
+  cohort,
+  password
+} = req.body || {};
 
     console.log("BODY RECEIVED:", req.body);
 
@@ -179,6 +180,16 @@ const htmlBody = `
       <p>
         Please join the community to receive onboarding details, class schedule, and next steps.
       </p>
+      <p><strong>Portal Login Details</strong></p>
+
+<p>Email: ${email}</p>
+
+<p>Password: ${password}</p>
+
+<p>
+Use these credentials to access your
+student portal after payment confirmation.
+</p>
 
       <p style="margin-top:25px;">
         Best regards,<br>
