@@ -38,6 +38,7 @@ export default async function handler(req, res) {
   cohort,
   password
 } = req.body || {};
+console.log(req.body);
 
     console.log("BODY RECEIVED:", req.body);
 
